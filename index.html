@@ -184,6 +184,29 @@
     .agent-card ul{margin-top:.75rem;padding-left:1.1rem;}
     .agent-card ul li{font-size:.84rem;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:.5rem;}
 
+
+
+    /* DOCUMENTATION ADDITIONS */
+    .doc-note{background:white;border-radius:14px;padding:1.35rem 1.6rem;border-left:4px solid var(--gold);margin:1.5rem 0;color:var(--brown-light);font-size:.9rem;line-height:1.72;}
+    .activity-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.1rem;margin-top:1.25rem;}
+    .activity-card{background:white;border-radius:14px;padding:1.35rem;border:1px solid var(--cream-darker);}
+    .activity-card h4{font-family:'Playfair Display',serif;font-size:1rem;color:var(--rust);margin-bottom:.5rem;}
+    .activity-card p{font-size:.84rem;color:var(--brown-light);line-height:1.65;margin-bottom:.45rem;}
+    .insight-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1.25rem;counter-reset:insight;}
+    .insight-item{background:white;border-radius:10px;padding:1rem 1rem 1rem 3.1rem;border:1px solid var(--cream-darker);position:relative;}
+    .insight-item::before{counter-increment:insight;content:counter(insight);position:absolute;left:1rem;top:1rem;width:1.45rem;height:1.45rem;background:var(--rust);color:white;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;}
+    .insight-item strong{display:block;color:var(--rust);font-size:.84rem;margin-bottom:.25rem;}
+    .insight-item span{display:block;color:var(--brown-light);font-size:.78rem;line-height:1.55;}
+    .values-list{display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem;margin-top:1rem;}
+    .values-list div{background:var(--cream-dark);border-radius:10px;padding:.95rem 1rem;border-left:3px solid var(--orange);}
+    .values-list strong{display:block;color:var(--rust);font-size:.82rem;margin-bottom:.25rem;}
+    .values-list p{font-size:.78rem;color:var(--brown-light);line-height:1.55;margin:0;}
+    .reflection-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1.4rem;}
+    .reflection-card{background:white;border-radius:14px;padding:1.35rem;border:1px solid var(--cream-darker);}
+    .reflection-card h4{font-family:'Playfair Display',serif;color:var(--rust);font-size:1rem;margin-bottom:.55rem;}
+    .reflection-card p{font-size:.84rem;color:var(--brown-light);line-height:1.68;}
+    @media(max-width:900px){.activity-grid,.insight-list,.values-list,.reflection-grid{grid-template-columns:1fr;}}
+
     /* FOOTER */
     footer{background:var(--brown);color:rgba(255,255,255,.55);text-align:center;padding:2.5rem;font-size:.82rem;}
     footer strong{color:white;}
@@ -321,15 +344,16 @@
 <div class="band" id="research">
   <div class="section-wrap">
     <div class="section-label">02 — Research Insights</div>
-    <h2 class="section-title">What we learned about learning together</h2>
-    <p class="section-desc">Our research spanned multiple methods to understand how people learn informally, build community, and transition from participant to contributor in skill-sharing environments.</p>
+    <h2 class="section-title">What we learned about reciprocal learning</h2>
+    <p class="section-desc">To understand how a peer-to-peer skill-sharing service could support the transition from learner to contributor while fostering community, we used mixed methods: two semi-structured interviews, three observational studies during an art studio portfolio review and LinkedIn Learning workshop sessions, a competitive analysis of learning and community platforms, a two-hour co-design workshop, and AI-assisted research synthesis across four large language models.</p>
     <div class="method-row">
-      <span class="method-pill">Semi-structured Interviews</span>
-      <span class="method-pill">Field Observation</span>
-      <span class="method-pill">Co-Design Sessions</span>
-      <span class="method-pill">Expert Interviews</span>
-      <span class="method-pill">Secondary Research</span>
+      <span class="method-pill">2 Semi-structured Interviews</span>
+      <span class="method-pill">3 Observational Studies</span>
+      <span class="method-pill">Competitive Analysis</span>
+      <span class="method-pill">2-Hour Co-Design Workshop</span>
+      <span class="method-pill">AI-Assisted Synthesis</span>
     </div>
+    <div class="doc-note"><strong>Synthesis:</strong> Participants were motivated by opportunities to learn practical skills and connect with people who shared similar interests, but they often lacked clear pathways to become contributors themselves. Existing platforms often prioritize content consumption or expert-led instruction, leaving limited opportunities for reciprocal exchange, peer encouragement, and community ownership. Starting Point responds by making progression visible: newcomer → participant → contributor → leader.</div>
     <div class="insights-grid">
       <div class="insight-card">
         <div class="ico">🎵</div>
@@ -379,37 +403,36 @@
 <div id="codesign">
   <div class="section-wrap">
     <div class="section-label">03 — Co-Design Outcomes</div>
-    <h2 class="section-title">What co-design sessions revealed</h2>
-    <p class="section-desc">We ran participatory co-design workshops to observe how people naturally teach and learn together. Three findings fundamentally shaped our service design.</p>
-    <div class="codesign-grid">
-      <div class="codesign-card">
-        <h4>Informal Teaching Strategies Are Effective</h4>
-        <p>When teaching, participants naturally reached for analogies, physical demonstration, and humor — without any instruction to do so. These approaches produced better learning outcomes than explicit, structured teaching.</p>
-        <p>This validated our decision to empower cooking leaders as facilitators, not lecturers.</p>
-        <div class="codesign-src">Source: "Sneaky Skill" activity</div>
-      </div>
-      <div class="codesign-card">
-        <h4>Psychological Safety Is a Prerequisite</h4>
-        <p>When activities felt playful and low-stakes, participants freely tried, failed, and asked questions. The moment framing became competitive or implied a "right answer," some participants disengaged entirely.</p>
-        <p>This shaped our insistence on pay-what-you-can pricing and no-judgment cooking instruction.</p>
-        <div class="codesign-src">Source: Balloon animals, sneaky skill, dance activities</div>
-      </div>
-      <div class="codesign-card">
-        <h4>People Default to Watching Rather Than Asking</h4>
-        <p>Multiple participants noted they observed others instead of asking for help directly. The physical and social design of the space must make peer observation natural and easy.</p>
-        <p>This informed our open-kitchen layout, communal stations, and the transition cards that invite sharing without demanding it.</p>
-        <div class="codesign-src">Source: Learning dance in group activity</div>
-      </div>
+    <h2 class="section-title">What the two-hour co-design session revealed</h2>
+    <p class="section-desc">We ran a two-hour workshop with 9 participants recruited because they were passionate about learning and had experience teaching or learning new skills. Participants ranged from freshman to post-grad and brought skills including piano, fly fishing, dance, and other niche expertise. This range helped us see how people with different backgrounds approach both teaching and learning.</p>
+    <div class="doc-note"><strong>Workshop goal:</strong> Lower the stakes, prove that everyone has something valuable to contribute, and observe how skills move through a group when people are not formal instructors.</div>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:2rem;margin-bottom:.75rem;font-size:1.1rem;">Co-Design Exercises</h3>
+    <div class="activity-grid">
+      <div class="activity-card"><h4>Icebreaker: Party Trick Share</h4><p>Each participant shared a niche skill or party trick. This made expertise feel informal and personal, and signaled that unique lived experience mattered more than credentials.</p></div>
+      <div class="activity-card"><h4>Balloon &amp; Dance: Teaching What You Just Learned</h4><p>One team learned balloon animals while another learned a short dance. After five minutes, participants paired up and taught the skill they had just acquired.</p><p><strong>Why:</strong> To see whether people could pass on a skill before they felt fully confident.</p></div>
+      <div class="activity-card"><h4>Drawing Telephone: Telestrations</h4><p>Participants wrote phrases, passed papers, drew interpretations, and reinterpreted drawings until the original paper returned.</p><p><strong>Why:</strong> To reveal how communication changes as it passes through different people and assumptions.</p></div>
+      <div class="activity-card"><h4>Sneaky Skill: Untrained Teaching in Action</h4><p>One participant taught the group how to snap with all fingers. He naturally used analogies, hands-on assistance, and humor.</p><p><strong>Why:</strong> To observe casual, unscripted teaching without formal training.</p></div>
+      <div class="activity-card"><h4>Spaghetti Tower: Collaborative Building With Different Goals</h4><p>Two teams built spaghetti towers. One was told to build the highest tower; the other was told to have fun and make the coolest tower.</p><p><strong>Why:</strong> To understand how framing and definitions of success shape group behavior, creativity, and engagement.</p></div>
     </div>
-    <div>
-      <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:2rem;margin-bottom:.75rem;font-size:1.1rem;">Co-Design Exercises Used</h3>
-      <div class="ex-row">
-        <span class="ex-pill">Sneaky Skill Transfer</span>
-        <span class="ex-pill">Balloon Animal Making</span>
-        <span class="ex-pill">Group Dance Learning</span>
-        <span class="ex-pill">Peer Teaching Rotation</span>
-        <span class="ex-pill">Transition Card Prototyping</span>
-      </div>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:2.25rem;margin-bottom:.5rem;font-size:1.1rem;">10 Insights from the Session</h3>
+    <div class="insight-list">
+      <div class="insight-item"><strong>People can teach what they barely know</strong><span>Peer teaching does not require deep expertise to be valuable.</span></div>
+      <div class="insight-item"><strong>Informal teaching strategies work</strong><span>Analogies, demonstration, and humor improved engagement.</span></div>
+      <div class="insight-item"><strong>Information degrades without shared context</strong><span>Telestrations showed how quickly meaning shifts through interpretation.</span></div>
+      <div class="insight-item"><strong>Group dynamics shape participation</strong><span>Who led or disengaged depended more on dynamics than skill level.</span></div>
+      <div class="insight-item"><strong>Psychological safety is a prerequisite</strong><span>Playful, low-stakes tasks made people more willing to try, fail, and ask questions.</span></div>
+      <div class="insight-item"><strong>Reflection unlocks deeper insight</strong><span>Debriefs produced richer responses than observation alone.</span></div>
+      <div class="insight-item"><strong>People watch before they ask</strong><span>Design should make peer observation easy, not just direct help-seeking.</span></div>
+      <div class="insight-item"><strong>Framing shapes effort and creativity</strong><span>Competitive framing narrowed how teams defined success.</span></div>
+      <div class="insight-item"><strong>Teaching difficulty builds empathy</strong><span>Teachers gained appreciation for breaking down tacit knowledge.</span></div>
+      <div class="insight-item"><strong>Diverse skills create unexpected connections</strong><span>Piano, fly fishing, dance, and other backgrounds produced richer metaphors and discussion.</span></div>
+    </div>
+
+    <div class="reflection-grid">
+      <div class="reflection-card"><h4>Reflection</h4><p>The session went well: energy stayed high, the mix of physical, creative, and collaborative activities avoided repetition, and the icebreaker helped participants feel safe enough to try and fail. The richest insights emerged during debriefs. Spaghetti Tower generated the strongest discussion about group dynamics, while Sneaky Skill revealed how untrained teachers naturally teach.</p></div>
+      <div class="reflection-card"><h4>What We Would Do Differently</h4><p>Future sessions should recruit beyond a university-centered age range, especially adults who may lose hobby-building opportunities after college and may need community more acutely. We would also record or transcribe debriefs so rich quotes are not lost while facilitators are running the session.</p></div>
     </div>
   </div>
 </div>
@@ -852,23 +875,20 @@
 <div class="band" id="narrative">
   <div class="section-wrap">
     <div class="section-label">08 — Narrative Workshop</div>
-    <h2 class="section-title">How our design questions evolved</h2>
-    <p class="section-desc">Our narrative workshop traced the evolution of our central design question — from a broad prompt about skill-sharing to a focused challenge about psychological safety, reciprocity, and belonging.</p>
-    <div style="background:white;border-radius:14px;padding:1.75rem;margin-bottom:1.75rem;border-left:4px solid var(--gold);">
-      <div style="font-size:.68rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;">Initial Design Question</div>
-      <p style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--rust);line-height:1.55;">What is the best format to get people to build new skills, share their expertise, and build community while doing it?</p>
-    </div>
+    <h2 class="section-title">Role-playing the service in a real kitchen</h2>
+    <p class="section-desc">Instead of making a polished video, we ran an in-depth role play with 10 participants, including ourselves, over 2.5 hours. We taught a brief history of empanadas, prepared ingredients, shaped and baked them, and ate together.</p>
+    <div class="doc-note"><strong>Key learning:</strong> Cooking acted as a social lubricant. It broke the ice, sparked conversation, started forming connections, and opened the door for creative expression and sharing.</div>
     <div class="q-grid">
-      <div class="q-block"><div class="hmw">HMW</div><p>Design a peer-to-peer skill sharing product/service that enables the transition from learner to contributor and fosters community?</p></div>
-      <div class="q-block"><div class="hmw">HMW</div><p>Design a peer-to-peer skill sharing service that builds empathy for learners while also enabling the transition from learners to contributors?</p></div>
-      <div class="q-block"><div class="hmw">HMW</div><p>Enable psychological safety when learning and sharing with new people?</p></div>
-      <div class="q-block"><div class="hmw">HMW</div><p>Draw out the knowledge of diverse backgrounds so that learning is a reciprocal activity?</p></div>
-      <div class="q-block"><div class="hmw">HMW</div><p>Support in-person connection for learners or teachers — and enable connections that persist beyond the context of the service?</p></div>
-      <div class="q-block"><div class="hmw">HMW</div><p>Ensure that learning is a reciprocal activity where every participant is both teacher and student?</p></div>
+      <div class="q-block"><div class="hmw">Narrative Insight</div><p>The large, loud kitchen made high-quality audio and video difficult, but the conversations during cooking were more valuable than a polished recording.</p></div>
+      <div class="q-block"><div class="hmw">Service Gap</div><p>Planning was the biggest challenge and should be detailed more clearly in the blueprint, especially for organizers.</p></div>
+      <div class="q-block"><div class="hmw">Future Artifact</div><p>A journey map for the organizer would help the team understand staffing, prep, materials, timing, and facilitation burden.</p></div>
+      <div class="q-block"><div class="hmw">Audience Shift</div><p>Inspired by a participant, we shifted the target demographic toward people experiencing food insecurity.</p></div>
+      <div class="q-block"><div class="hmw">Service Positioning</div><p>Many services provide food; Starting Point aims to meet needs across Maslow's hierarchy by adding dignity, belonging, skill-building, and creative contribution.</p></div>
+      <div class="q-block"><div class="hmw">Sustainability</div><p>The service creates enough community value to justify donations and grants that can sustain a dedicated space.</p></div>
     </div>
     <div style="background:white;border-radius:14px;padding:1.75rem;margin-top:1.75rem;">
       <div style="font-size:.68rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;">Where These Questions Led Us</div>
-      <p style="font-size:.93rem;color:var(--brown-light);line-height:1.78;">Our workshop revealed that the best format for peer skill-sharing is one that is <strong>informal and decentralized</strong>, allowing people to learn in places that work for them. It must enable people to learn skills from their peers, become teachers themselves, and build lasting community — with cooking serving as the universal, low-barrier entry point that brings everyone to the same table.</p>
+      <p style="font-size:.93rem;color:var(--brown-light);line-height:1.78;">Our central design question evolved from broad skill-sharing into a more specific service challenge: how might we create a financially accessible, human-centered cooking service where people facing food insecurity can gain practical skills, share cultural knowledge, feel dignity instead of need, and eventually move from guest to contributor?</p>
     </div>
   </div>
 </div>
@@ -879,6 +899,18 @@
     <div class="section-label">09 — Design Principles &amp; Requirements</div>
     <h2 class="section-title">What must guide our design</h2>
     <p class="section-desc">Six design requirements derived from research, co-design, and field observation — each grounded in evidence and tied to a core principle that will maintain design integrity as the service evolves.</p>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);font-size:1.15rem;margin-bottom:.75rem;">Service Values</h3>
+    <div class="values-list">
+      <div><strong>Community</strong><p>Shared interests should build a strong user community, validated through co-design and survey feedback.</p></div>
+      <div><strong>User Flexibility</strong><p>Participants need agency and freedom to get what they need from the service.</p></div>
+      <div><strong>Financial Accessibility</strong><p>People will only engage if barriers are limited, so events should be free or suggested-donation only.</p></div>
+      <div><strong>Accessible Experience</strong><p>Digital materials should follow WCAG guidelines, color audits, and usability testing.</p></div>
+      <div><strong>Engaging Design</strong><p>Interfaces and events should be validated for satisfaction and meaningful engagement.</p></div>
+      <div><strong>Trustworthy Service</strong><p>The service must help users gain skills in a way that feels safe and credible.</p></div>
+      <div><strong>Meaningful Experience</strong><p>Participants should leave feeling that their time was well spent.</p></div>
+      <div><strong>Perspective Widening</strong><p>Starting Point should introduce new skills, cultures, and ways of thinking.</p></div>
+    </div>
 
     <h3 style="font-family:'Playfair Display',serif;color:var(--rust);font-size:1.15rem;margin-bottom:1.25rem;">Design Requirements</h3>
     <div class="req-grid">
@@ -951,13 +983,13 @@
     </div>
 
     <div class="agent-card">
-      <h4>Agent Deployment Principle: Augment Human Connection, Never Replace It</h4>
-      <p>Starting Point may use AI-assisted tools — recommendation engines, form processing, personalized follow-up emails — to reduce administrative burden and improve participant matching. However, the following limitations must govern any agent deployment:</p>
+      <h4>AI Decision: Keep the Core Service Human</h4>
+      <p>For the current design, we chose not to incorporate AI into the main participant experience because Starting Point is built around person-to-person interaction, human mentorship, community leadership, and belonging. An AI agent could help with sign-up or information navigation, but that would add training, maintenance, customer-service burden, and assumptions about users' comfort with AI without strengthening the core in-person service.</p>
       <ul>
-        <li><strong>AI cannot assess cultural fit or community dynamics.</strong> Automated matching tools lack the contextual awareness to understand interpersonal dynamics or community history. Final decisions about volunteer roles and facilitation assignments must remain human-mediated.</li>
-        <li><strong>Language model outputs require human review before community-facing use.</strong> AI-generated event descriptions or welcome communications may contain inaccuracies or tones inconsistent with Starting Point's voice. All AI-drafted content must be reviewed by a community member before publication.</li>
-        <li><strong>Automated follow-up must preserve opt-out dignity.</strong> Reminder emails and membership solicitation workflows must include clear, friction-free opt-out options. Persistence algorithms that optimize for conversion can undermine the psychological safety that Starting Point depends on.</li>
-        <li><strong>AI cannot build trust.</strong> The relationship between Starting Point and its community is built through consistent human presence. Agent tools are permitted only in administrative — not relational — pathways of the service. A chatbot cannot welcome someone to their first event; a person must.</li>
+        <li><strong>AI should not replace welcome, mentorship, or facilitation.</strong> A person should welcome someone to their first event, not a chatbot.</li>
+        <li><strong>AI may be considered only as human-centered assistance.</strong> Future tools could support onboarding, recommendations, or opportunity matching, but should remain optional and transparent.</li>
+        <li><strong>Human oversight is required.</strong> AI can misinterpret context, make mistakes, or reinforce bias, so significant community decisions must stay human-mediated.</li>
+        <li><strong>Users need agency.</strong> If recommendations are AI-generated, users should be told and should be able to question, ignore, or override them.</li>
       </ul>
     </div>
   </div>
