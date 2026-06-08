@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Starting Point — Design Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --rust: #8B3A14;
+      --orange: #C4521E;
+      --gold: #E8A020;
+      --cream: #F2EDE4;
+      --cream-dark: #E8E2D6;
+      --cream-darker: #D8D2C6;
+      --brown: #2C1A0E;
+      --brown-light: #5A3A20;
+      --sage: #5C6B3A;
+    }
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html{scroll-behavior:smooth;}
+    body{font-family:'Inter',sans-serif;background:var(--cream);color:var(--brown);line-height:1.6;}
+
+    /* NAV */
+    nav{position:sticky;top:0;z-index:100;background:var(--rust);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:60px;}
+    .nav-brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;}
+    .nav-brand svg{flex-shrink:0;}
+    .nav-brand-text{font-family:'Playfair Display',serif;font-size:1rem;font-weight:700;color:white;line-height:1.15;}
+    .nav-brand-sub{font-size:.6rem;font-weight:400;opacity:.7;letter-spacing:.1em;text-transform:uppercase;display:block;}
+    nav ul{list-style:none;display:flex;gap:.15rem;}
+    nav ul li a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.72rem;font-weight:500;padding:.35rem .6rem;border-radius:4px;transition:background .2s,color .2s;letter-spacing:.02em;}
+    nav ul li a:hover{background:rgba(255,255,255,.15);color:white;}
+
+    /* HERO */
+    .hero{background:var(--rust);min-height:88vh;display:flex;align-items:center;position:relative;overflow:hidden;}
+    .hero-content{position:relative;z-index:2;max-width:1200px;margin:0 auto;padding:5rem 2rem;display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;width:100%;}
+    .hero-label{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem;}
+    .hero-title{font-family:'Playfair Display',serif;font-size:4rem;font-weight:700;color:white;line-height:1.05;margin-bottom:1.4rem;}
+    .hero-subtitle{font-size:1.05rem;color:rgba(255,255,255,.8);margin-bottom:1.75rem;max-width:480px;line-height:1.75;}
+    .hero-tags{display:flex;flex-wrap:wrap;gap:.45rem;}
+    .hero-tag{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.9);padding:.3rem .85rem;border-radius:100px;font-size:.75rem;font-weight:500;}
+    .hero-right{display:flex;flex-direction:column;gap:1.25rem;}
+    .hero-stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+    .hero-stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:1.1rem 1.25rem;}
+    .hero-stat-value{font-family:'Playfair Display',serif;font-size:2rem;color:var(--gold);font-weight:700;line-height:1;}
+    .hero-stat-label{font-size:.75rem;color:rgba(255,255,255,.65);margin-top:.35rem;}
+    .hero-quote{background:rgba(255,255,255,.1);border-left:3px solid var(--gold);padding:.9rem 1.1rem;border-radius:0 8px 8px 0;font-style:italic;color:rgba(255,255,255,.9);font-size:.9rem;line-height:1.65;}
+    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.4);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:.4rem;}
+    .scroll-arrow{width:16px;height:16px;border-right:2px solid rgba(255,255,255,.35);border-bottom:2px solid rgba(255,255,255,.35);transform:rotate(45deg);animation:bounce 1.5s infinite;}
+    @keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(4px);}}
+
+    /* SECTIONS */
+    .section-wrap{max-width:1200px;margin:0 auto;padding:5rem 2rem;}
+    .band{background:var(--cream-dark);}
+    .band-dark{background:var(--rust);}
+    .divider{width:100%;height:1px;background:var(--cream-darker);}
+    .section-label{font-size:.68rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--orange);margin-bottom:.6rem;}
+    .section-title{font-family:'Playfair Display',serif;font-size:2.2rem;font-weight:700;color:var(--rust);line-height:1.2;margin-bottom:.9rem;}
+    .section-desc{font-size:.95rem;color:var(--brown-light);max-width:660px;line-height:1.78;margin-bottom:2.5rem;}
+
+    /* VALUE */
+    .value-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;}
+    .value-card{background:white;border-radius:16px;padding:1.75rem;border:1px solid var(--cream-darker);}
+    .value-card-icon{font-size:1.75rem;margin-bottom:.75rem;}
+    .value-card h3{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--rust);margin-bottom:.6rem;}
+    .value-card p{font-size:.87rem;color:var(--brown-light);line-height:1.7;}
+    .value-card ul{margin-top:.6rem;padding-left:1.1rem;}
+    .value-card ul li{font-size:.85rem;color:var(--brown-light);line-height:1.65;margin-bottom:.3rem;}
+
+    /* RESEARCH */
+    .method-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:2.5rem;}
+    .method-pill{background:var(--rust);color:white;padding:.4rem 1rem;border-radius:100px;font-size:.78rem;font-weight:500;}
+    .insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .insight-card{background:white;border-radius:14px;padding:1.5rem;border-top:4px solid var(--orange);}
+    .insight-card .ico{font-size:1.75rem;margin-bottom:.6rem;}
+    .insight-card h4{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--rust);margin-bottom:.55rem;font-weight:700;}
+    .insight-card p{font-size:.83rem;color:var(--brown-light);line-height:1.65;}
+    .insight-src{margin-top:.75rem;font-size:.72rem;color:var(--orange);font-weight:600;}
+    .quote-block{background:var(--rust);border-radius:14px;padding:1.75rem 2rem;margin-top:2rem;position:relative;}
+    .quote-block::before{content:'"';position:absolute;top:-.5rem;left:1.2rem;font-family:'Playfair Display',serif;font-size:5rem;color:var(--gold);opacity:.35;line-height:1;}
+    .quote-block p{font-size:1.05rem;color:white;font-style:italic;line-height:1.7;position:relative;z-index:1;}
+    .quote-block cite{display:block;margin-top:.65rem;color:var(--gold);font-size:.78rem;font-weight:600;font-style:normal;}
+
+    /* CO-DESIGN */
+    .codesign-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .codesign-card{background:white;border-radius:14px;padding:1.75rem;border:1px solid var(--cream-darker);}
+    .codesign-card h4{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--rust);margin-bottom:.6rem;}
+    .codesign-card p{font-size:.83rem;color:var(--brown-light);line-height:1.65;margin-bottom:.5rem;}
+    .codesign-src{font-size:.72rem;color:var(--orange);font-weight:600;}
+    .ex-row{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1.75rem;}
+    .ex-pill{background:var(--orange);color:white;padding:.35rem .9rem;border-radius:8px;font-size:.78rem;font-weight:500;}
+
+    /* ECOSYSTEM */
+    .eco-wrap{background:white;border-radius:18px;padding:2rem;border:1px solid var(--cream-darker);}
+    .eco-legend{display:grid;grid-template-columns:repeat(4,1fr);gap:.85rem;margin-top:1.5rem;}
+    .eco-leg-item{background:white;border-radius:10px;padding:1rem 1.1rem;border-left:4px solid var(--cream-darker);}
+    .eco-leg-item strong{font-size:.82rem;color:var(--rust);display:block;margin-bottom:.3rem;}
+    .eco-leg-item p{font-size:.76rem;color:var(--brown-light);line-height:1.5;}
+
+    /* BLUEPRINT */
+    .bp-scroll{overflow-x:auto;}
+    .bp-table{width:100%;border-collapse:separate;border-spacing:5px;min-width:860px;}
+    .bp-phase{background:var(--rust);color:white;text-align:center;padding:.6rem .4rem;font-weight:700;font-size:.78rem;border-radius:7px;letter-spacing:.04em;}
+    .bp-row-label{background:var(--brown);color:white;padding:.65rem .9rem;font-weight:600;font-size:.72rem;border-radius:7px;vertical-align:top;white-space:nowrap;width:110px;}
+    .bp-cell{background:var(--cream-dark);padding:.65rem .7rem;border-radius:7px;vertical-align:top;}
+    .bp-cell ul{list-style:none;padding:0;}
+    .bp-cell ul li{font-size:.74rem;color:var(--brown);line-height:1.5;margin-bottom:.25rem;padding-left:.85rem;position:relative;}
+    .bp-cell ul li::before{content:'·';position:absolute;left:.2rem;color:var(--orange);font-weight:bold;}
+    .bp-div td{padding:2px 0;}
+    .bp-div-line{height:2px;background:var(--rust);border-radius:2px;opacity:.15;}
+    .bp-channels{background:white;border-radius:8px;padding:.65rem 1.1rem;border-left:3px solid var(--rust);font-size:.8rem;color:var(--brown-light);margin-top:1rem;}
+
+    /* JOURNEY */
+    .jrn-phases{display:flex;gap:.4rem;min-width:900px;margin-bottom:.75rem;}
+    .jrn-phase-lbl{flex:1;text-align:center;background:var(--rust);color:white;padding:.55rem .3rem;border-radius:7px;font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;}
+    .jrn-chart{min-width:900px;margin-bottom:1.75rem;}
+    .jrn-grid{display:grid;grid-template-columns:repeat(8,1fr);gap:.6rem;min-width:900px;}
+    .jrn-col{background:white;border-radius:10px;padding:.85rem .7rem;}
+    .jrn-col h5{font-size:.67rem;font-weight:700;color:var(--rust);margin-bottom:.4rem;text-transform:uppercase;letter-spacing:.04em;}
+    .jrn-col ul{list-style:none;padding:0;}
+    .jrn-col ul li{font-size:.68rem;color:var(--brown-light);line-height:1.4;margin-bottom:.2rem;padding-left:.65rem;position:relative;}
+    .jrn-col ul li::before{content:'·';position:absolute;left:0;color:var(--orange);}
+    .jrn-emo{background:var(--cream);border-radius:8px;padding:.55rem .6rem;margin-top:.5rem;border-left:2px solid var(--gold);}
+    .jrn-emo p{font-size:.66rem;color:var(--brown-light);font-style:italic;line-height:1.4;}
+
+    /* PROTOTYPE */
+    .proto-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;align-items:start;}
+    .proto-link{display:inline-flex;align-items:center;gap:.5rem;background:var(--rust);color:white;text-decoration:none;padding:.65rem 1.35rem;border-radius:8px;font-weight:600;font-size:.88rem;margin-top:1.4rem;transition:background .2s;}
+    .proto-link:hover{background:var(--orange);}
+    .proto-features{margin-top:1.4rem;display:flex;flex-direction:column;gap:.65rem;}
+    .proto-feat{display:flex;align-items:flex-start;gap:.65rem;}
+    .proto-feat-ico{width:34px;height:34px;background:var(--cream-dark);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.95rem;flex-shrink:0;}
+    .proto-feat-text h5{font-size:.88rem;font-weight:600;color:var(--brown);margin-bottom:.15rem;}
+    .proto-feat-text p{font-size:.8rem;color:var(--brown-light);line-height:1.5;}
+    .mockup-wrap{background:var(--cream-dark);border-radius:14px;overflow:hidden;border:1px solid var(--cream-darker);}
+    .mockup-bar{background:var(--rust);padding:.65rem .9rem;display:flex;align-items:center;gap:.4rem;}
+    .mkdot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);}
+    .mockup-url{background:rgba(255,255,255,.12);border-radius:4px;padding:.18rem .65rem;color:rgba(255,255,255,.75);font-size:.7rem;margin-left:.4rem;}
+    .mockup-body{padding:1.25rem;}
+    .mock-hero{background:var(--rust);border-radius:8px;padding:1.25rem;margin-bottom:.85rem;}
+    .mock-hero h3{font-family:'Playfair Display',serif;font-size:1.25rem;color:white;margin-bottom:.35rem;}
+    .mock-hero p{font-size:.76rem;color:rgba(255,255,255,.72);}
+    .mock-info{display:flex;gap:.65rem;background:var(--brown);border-radius:8px;padding:.65rem .85rem;margin-bottom:.85rem;}
+    .mock-info-item span{display:block;font-size:.6rem;color:rgba(255,255,255,.45);margin-bottom:.15rem;text-transform:uppercase;}
+    .mock-info-item strong{font-size:.75rem;color:white;}
+    .mock-tags{display:flex;gap:.4rem;flex-wrap:wrap;}
+    .mock-tag{background:var(--rust);color:white;padding:.25rem .65rem;border-radius:100px;font-size:.68rem;font-weight:500;}
+
+    /* ARTIFACTS */
+    .artifacts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
+    .artifact-card{background:white;border-radius:14px;overflow:hidden;border:1px solid var(--cream-darker);}
+    .artifact-preview{height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.4rem;font-size:2.5rem;}
+    .artifact-type{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem;}
+    .artifact-info{padding:1.1rem;}
+    .artifact-info h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--rust);margin-bottom:.35rem;}
+    .artifact-info p{font-size:.8rem;color:var(--brown-light);line-height:1.55;}
+
+    /* NARRATIVE */
+    .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+    .q-block{background:var(--cream-dark);border-radius:10px;padding:1.1rem;border-left:4px solid var(--orange);}
+    .hmw{font-size:.67rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.35rem;}
+    .q-block p{font-size:.87rem;color:var(--brown);line-height:1.6;font-style:italic;}
+
+    /* REQUIREMENTS */
+    .req-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;}
+    .req-card{background:white;border-radius:14px;padding:1.75rem;border:1px solid var(--cream-darker);}
+    .req-num{display:inline-flex;align-items:center;justify-content:center;background:var(--rust);color:white;width:1.85rem;height:1.85rem;border-radius:50%;font-size:.8rem;font-weight:700;margin-bottom:.85rem;}
+    .req-card h4{font-family:'Playfair Display',serif;font-size:.98rem;color:var(--rust);margin-bottom:.6rem;font-weight:700;}
+    .req-card blockquote{background:var(--cream-dark);border-radius:7px;padding:.65rem .9rem;font-style:italic;font-size:.79rem;color:var(--brown-light);line-height:1.6;border-left:3px solid var(--orange);margin:.65rem 0;}
+    .req-card p{font-size:.82rem;color:var(--brown-light);line-height:1.65;}
+    .req-src{font-size:.7rem;color:var(--orange);font-weight:600;margin-top:.5rem;}
+
+    /* PRINCIPLES */
+    .prin-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+    .prin-card{background:white;border-radius:14px;padding:1.75rem 1.75rem 1.75rem 2rem;border:1px solid var(--cream-darker);position:relative;}
+    .prin-num{position:absolute;top:-1rem;left:1.4rem;background:var(--rust);color:white;width:2rem;height:2rem;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;}
+    .prin-card h4{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--rust);margin-bottom:.6rem;font-weight:700;}
+    .prin-card p{font-size:.85rem;color:var(--brown-light);line-height:1.7;}
+    .agent-card{background:var(--brown);border-radius:14px;padding:2rem;margin-top:1.75rem;border-left:4px solid var(--gold);}
+    .agent-card h4{font-family:'Playfair Display',serif;font-size:1.05rem;color:var(--gold);margin-bottom:.65rem;}
+    .agent-card > p{font-size:.87rem;color:rgba(255,255,255,.8);line-height:1.72;}
+    .agent-card ul{margin-top:.75rem;padding-left:1.1rem;}
+    .agent-card ul li{font-size:.84rem;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:.5rem;}
+
+    /* FOOTER */
+    footer{background:var(--brown);color:rgba(255,255,255,.55);text-align:center;padding:2.5rem;font-size:.82rem;}
+    footer strong{color:white;}
+    footer a{color:var(--gold);text-decoration:none;}
+
+    /* RESPONSIVE */
+    @media(max-width:900px){
+      .hero-content,.value-grid,.insights-grid,.codesign-grid,.req-grid,.proto-grid,.q-grid,.prin-grid,.eco-legend,.artifacts-grid{grid-template-columns:1fr;}
+      .hero-title{font-size:2.6rem;}
+      nav ul{display:none;}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#top" class="nav-brand">
+    <svg width="34" height="34" viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="20" ry="20" fill="#E8A020"/><text x="50%" y="57%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="13" font-weight="bold" font-family="Georgia,serif">SP</text></svg>
+    <div>
+      <span class="nav-brand-text">Starting Point</span>
+      <span class="nav-brand-sub">Design Portfolio</span>
+    </div>
+  </a>
+  <ul>
+    <li><a href="#value">Value</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#codesign">Co-Design</a></li>
+    <li><a href="#ecosystem">Ecosystem</a></li>
+    <li><a href="#blueprint">Blueprint</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#prototype">Prototype</a></li>
+    <li><a href="#narrative">Narrative</a></li>
+    <li><a href="#principles">Principles</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <svg style="position:absolute;inset:0;opacity:.06;width:100%;height:100%;" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+    <circle cx="700" cy="100" r="200" stroke="white" stroke-width="1" fill="none"/>
+    <circle cx="700" cy="100" r="130" stroke="white" stroke-width="1" fill="none"/>
+    <circle cx="700" cy="100" r="60" stroke="white" stroke-width="1" fill="none"/>
+    <circle cx="80" cy="500" r="160" stroke="white" stroke-width="1" fill="none"/>
+    <circle cx="80" cy="500" r="90" stroke="white" stroke-width="1" fill="none"/>
+  </svg>
+  <div class="hero-content">
+    <div>
+      <div class="hero-label">HCDE — Spring 2026 — Capstone Project</div>
+      <h1 class="hero-title">Cook.<br>Connect.<br>Community.</h1>
+      <p class="hero-subtitle">Starting Point is a peer-to-peer community cooking service that brings strangers together through shared meals, skill-sharing, and creative expression — removing barriers so anyone can belong.</p>
+      <div class="hero-tags">
+        <span class="hero-tag">Service Design</span>
+        <span class="hero-tag">Community Building</span>
+        <span class="hero-tag">Co-Design</span>
+        <span class="hero-tag">Human-Centered Research</span>
+        <span class="hero-tag">Seattle, WA</span>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-stat-grid">
+        <div class="hero-stat"><div class="hero-stat-value">6</div><div class="hero-stat-label">Design Requirements</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">8</div><div class="hero-stat-label">Journey Phases</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">3</div><div class="hero-stat-label">Co-Design Findings</div></div>
+        <div class="hero-stat"><div class="hero-stat-value">Free</div><div class="hero-stat-label">Donate as you can</div></div>
+      </div>
+      <div class="hero-quote">"Everyone is welcome at our table. Through cooking, shared meals, and creative gatherings, we help people build friendships, find belonging, and become part of a thriving community."</div>
+    </div>
+  </div>
+  <div class="scroll-hint">Scroll to explore<div class="scroll-arrow"></div></div>
+</div>
+
+<!-- 01 VALUE -->
+<div id="value">
+  <div class="section-wrap">
+    <div class="section-label">01 — Value Statement</div>
+    <h2 class="section-title">What value does Starting Point offer?</h2>
+    <p class="section-desc">Starting Point delivers value far beyond a shared meal. It creates a place where people find belonging, rediscover creativity, and grow into community leaders — all through the universal act of cooking together.</p>
+    <div class="value-grid">
+      <div class="value-card">
+        <div class="value-card-icon">🍽️</div>
+        <h3>Value for Participants</h3>
+        <p>For people navigating social isolation — especially newcomers, young adults, and those facing food insecurity — Starting Point offers something money cannot buy:</p>
+        <ul>
+          <li><strong>Belonging:</strong> A recurring, structured space to form real friendships without pressure.</li>
+          <li><strong>Skill acquisition:</strong> Hands-on cooking instruction, peer-to-peer knowledge sharing, and exposure to new cultures and cuisines.</li>
+          <li><strong>Creative expression:</strong> Post-meal jam sessions, craft exchanges, and artistic activities that open unexpected doors.</li>
+          <li><strong>Psychological safety:</strong> Low-stakes, playful learning where mistakes are welcome and curiosity is celebrated.</li>
+          <li><strong>Economic access:</strong> Pay-what-you-can pricing removes financial barriers without stigma.</li>
+          <li><strong>Identity:</strong> The transition from learner to contributor gives participants agency and pride in their own expertise.</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <div class="value-card-icon">🤝</div>
+        <h3>Value for Volunteers &amp; Staff</h3>
+        <p>Starting Point is a mutual-aid ecosystem where contributors receive as much as they give:</p>
+        <ul>
+          <li><strong>Purpose:</strong> Cooking leaders and volunteers gain deep fulfillment through meaningful mentorship.</li>
+          <li><strong>Leadership development:</strong> The participant → contributor → facilitator pathway builds real skills in teaching and community management.</li>
+          <li><strong>Cultural affirmation:</strong> Chefs and experts can share heritage recipes in a respectful, appreciative environment.</li>
+          <li><strong>Community ownership:</strong> Long-term members shape how the service evolves, creating shared stewardship.</li>
+          <li><strong>Network:</strong> Connection with local sponsors and allied organizations expands professional and social reach.</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <div class="value-card-icon">🌱</div>
+        <h3>Value for the Broader Community</h3>
+        <p>Starting Point generates positive externalities for Seattle:</p>
+        <ul>
+          <li>Reduces social isolation and its associated health costs.</li>
+          <li>Strengthens cross-cultural understanding through food and shared experience.</li>
+          <li>Builds a pipeline of civically engaged community members.</li>
+          <li>Creates a replicable model for low-barrier community infrastructure.</li>
+        </ul>
+      </div>
+      <div class="value-card">
+        <div class="value-card-icon">💛</div>
+        <h3>Core Values That Guide Us</h3>
+        <p>Five principles animate every Starting Point event:</p>
+        <ul>
+          <li><strong>Growth</strong> — Every meal is an opportunity to learn something new.</li>
+          <li><strong>Fulfillment</strong> — Nourishing others nourishes yourself.</li>
+          <li><strong>Discomfort</strong> — We honor the courage it takes to show up and try.</li>
+          <li><strong>Passion</strong> — Enthusiasm is contagious; we let it spread.</li>
+          <li><strong>Connection</strong> — Every table is a starting point for something.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 02 RESEARCH -->
+<div class="band" id="research">
+  <div class="section-wrap">
+    <div class="section-label">02 — Research Insights</div>
+    <h2 class="section-title">What we learned about learning together</h2>
+    <p class="section-desc">Our research spanned multiple methods to understand how people learn informally, build community, and transition from participant to contributor in skill-sharing environments.</p>
+    <div class="method-row">
+      <span class="method-pill">Semi-structured Interviews</span>
+      <span class="method-pill">Field Observation</span>
+      <span class="method-pill">Co-Design Sessions</span>
+      <span class="method-pill">Expert Interviews</span>
+      <span class="method-pill">Secondary Research</span>
+    </div>
+    <div class="insights-grid">
+      <div class="insight-card">
+        <div class="ico">🎵</div>
+        <h4>Shared Routines Create Return</h4>
+        <p>Recurring, predictable rituals — like always starting with scales — give newcomers confidence to return and help veteran members feel ownership over the space.</p>
+        <div class="insight-src">Interview with Music Teacher</div>
+      </div>
+      <div class="insight-card">
+        <div class="ico">🏺</div>
+        <h4>Belonging Is the Primary Need</h4>
+        <p>Participants consistently described community spaces as fulfilling a fundamental need to "not be alone" and "have a place to create." Belonging precedes and enables learning.</p>
+        <div class="insight-src">Interview with Pottery Volunteer</div>
+      </div>
+      <div class="insight-card">
+        <div class="ico">🔧</div>
+        <h4>Skilled Volunteering Requires Scaffolding</h4>
+        <p>Expert volunteers need significant orientation and trust-building before they can safely contribute. The service must support their transition, not just participants'.</p>
+        <div class="insight-src">Interview with Manager of Makerspaces</div>
+      </div>
+      <div class="insight-card">
+        <div class="ico">👁️</div>
+        <h4>People Watch Before They Ask</h4>
+        <p>In learning environments, participants default to observation over direct inquiry. Design must make peer-to-peer watching easy — not just teacher-to-student instruction.</p>
+        <div class="insight-src">HCDE Portfolio Review Field Observation</div>
+      </div>
+      <div class="insight-card">
+        <div class="ico">🛡️</div>
+        <h4>Safety Unlocks Participation</h4>
+        <p>Learners tried, failed, and asked questions freely when activities felt playful and low-stakes. Competitive or "right answer" framing caused disengagement and withdrawal.</p>
+        <div class="insight-src">Co-Design Sessions</div>
+      </div>
+      <div class="insight-card">
+        <div class="ico">🔀</div>
+        <h4>Informal Teaching Works Best</h4>
+        <p>Expert teachers naturally used analogies, physical demonstration, and humor without prompting. These informal methods produced better engagement than structured instruction.</p>
+        <div class="insight-src">Co-Design Sessions</div>
+      </div>
+    </div>
+    <div class="quote-block">
+      <p>"Space fulfills the need of… Yeah, like, belonging and, like, not being alone, and having a place to create."</p>
+      <cite>— P1, Interview with Pottery Volunteer</cite>
+    </div>
+  </div>
+</div>
+
+<!-- 03 CO-DESIGN -->
+<div id="codesign">
+  <div class="section-wrap">
+    <div class="section-label">03 — Co-Design Outcomes</div>
+    <h2 class="section-title">What co-design sessions revealed</h2>
+    <p class="section-desc">We ran participatory co-design workshops to observe how people naturally teach and learn together. Three findings fundamentally shaped our service design.</p>
+    <div class="codesign-grid">
+      <div class="codesign-card">
+        <h4>Informal Teaching Strategies Are Effective</h4>
+        <p>When teaching, participants naturally reached for analogies, physical demonstration, and humor — without any instruction to do so. These approaches produced better learning outcomes than explicit, structured teaching.</p>
+        <p>This validated our decision to empower cooking leaders as facilitators, not lecturers.</p>
+        <div class="codesign-src">Source: "Sneaky Skill" activity</div>
+      </div>
+      <div class="codesign-card">
+        <h4>Psychological Safety Is a Prerequisite</h4>
+        <p>When activities felt playful and low-stakes, participants freely tried, failed, and asked questions. The moment framing became competitive or implied a "right answer," some participants disengaged entirely.</p>
+        <p>This shaped our insistence on pay-what-you-can pricing and no-judgment cooking instruction.</p>
+        <div class="codesign-src">Source: Balloon animals, sneaky skill, dance activities</div>
+      </div>
+      <div class="codesign-card">
+        <h4>People Default to Watching Rather Than Asking</h4>
+        <p>Multiple participants noted they observed others instead of asking for help directly. The physical and social design of the space must make peer observation natural and easy.</p>
+        <p>This informed our open-kitchen layout, communal stations, and the transition cards that invite sharing without demanding it.</p>
+        <div class="codesign-src">Source: Learning dance in group activity</div>
+      </div>
+    </div>
+    <div>
+      <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:2rem;margin-bottom:.75rem;font-size:1.1rem;">Co-Design Exercises Used</h3>
+      <div class="ex-row">
+        <span class="ex-pill">Sneaky Skill Transfer</span>
+        <span class="ex-pill">Balloon Animal Making</span>
+        <span class="ex-pill">Group Dance Learning</span>
+        <span class="ex-pill">Peer Teaching Rotation</span>
+        <span class="ex-pill">Transition Card Prototyping</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 04 ECOSYSTEM -->
+<div class="band" id="ecosystem">
+  <div class="section-wrap">
+    <div class="section-label">04 — Ecosystem Map</div>
+    <h2 class="section-title">The Starting Point ecosystem</h2>
+    <p class="section-desc">Starting Point sits within a network of stakeholders, channels, and supporting systems that must all function together to deliver the community experience.</p>
+    <div class="eco-wrap">
+      <svg viewBox="0 0 880 520" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+        <rect width="880" height="520" fill="#F2EDE4" rx="12"/>
+
+        <!-- Connection lines -->
+        <line x1="376" y1="243" x2="238" y2="168" stroke="#C4521E" stroke-width="1.8" stroke-dasharray="6,4" opacity=".55"/>
+        <line x1="504" y1="243" x2="644" y2="168" stroke="#C4521E" stroke-width="1.8" stroke-dasharray="6,4" opacity=".55"/>
+        <line x1="368" y1="260" x2="176" y2="298" stroke="#5A3A20" stroke-width="1.8" stroke-dasharray="6,4" opacity=".55"/>
+        <line x1="512" y1="260" x2="706" y2="298" stroke="#5A3A20" stroke-width="1.8" stroke-dasharray="6,4" opacity=".55"/>
+        <line x1="400" y1="320" x2="286" y2="408" stroke="#8B3A14" stroke-width="1.8" stroke-dasharray="6,4" opacity=".45"/>
+        <line x1="480" y1="320" x2="596" y2="408" stroke="#8B3A14" stroke-width="1.8" stroke-dasharray="6,4" opacity=".45"/>
+        <line x1="440" y1="200" x2="440" y2="110" stroke="#E8A020" stroke-width="1.8" stroke-dasharray="6,4" opacity=".6"/>
+        <line x1="440" y1="320" x2="440" y2="424" stroke="#E8A020" stroke-width="1.8" stroke-dasharray="6,4" opacity=".6"/>
+        <path d="M 238 148 Q 440 60 644 148" stroke="#E8A020" stroke-width="1.2" fill="none" stroke-dasharray="5,5" opacity=".3"/>
+
+        <!-- Hub -->
+        <circle cx="440" cy="260" r="66" fill="#8B3A14"/>
+        <circle cx="440" cy="260" r="57" fill="#8B3A14" stroke="#E8A020" stroke-width="2"/>
+        <text x="440" y="252" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="Georgia,serif">Starting</text>
+        <text x="440" y="269" text-anchor="middle" fill="white" font-size="13" font-weight="bold" font-family="Georgia,serif">Point</text>
+        <text x="440" y="284" text-anchor="middle" fill="#E8A020" font-size="9" font-family="sans-serif" letter-spacing="1">HUB</text>
+
+        <!-- Participants -->
+        <circle cx="200" cy="140" r="48" fill="#C4521E"/>
+        <text x="200" y="135" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="sans-serif">Participants</text>
+        <text x="200" y="150" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="sans-serif">Community</text>
+        <text x="200" y="162" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="sans-serif">Members</text>
+
+        <!-- Cooking Leaders -->
+        <circle cx="680" cy="140" r="48" fill="#C4521E"/>
+        <text x="680" y="133" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="sans-serif">Cooking</text>
+        <text x="680" y="148" text-anchor="middle" fill="white" font-size="11" font-weight="bold" font-family="sans-serif">Leaders</text>
+        <text x="680" y="163" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="9" font-family="sans-serif">Chefs / Experts</text>
+
+        <!-- Staff -->
+        <circle cx="136" cy="316" r="44" fill="#5A3A20"/>
+        <text x="136" y="310" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">Staff &amp;</text>
+        <text x="136" y="325" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">Volunteers</text>
+
+        <!-- Donors -->
+        <circle cx="746" cy="316" r="44" fill="#5A3A20"/>
+        <text x="746" y="310" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">Sponsors</text>
+        <text x="746" y="325" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">&amp; Donors</text>
+
+        <!-- Venue -->
+        <circle cx="260" cy="434" r="42" fill="#8B3A14" opacity=".7"/>
+        <text x="260" y="428" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">Venue</text>
+        <text x="260" y="443" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="8.5" font-family="sans-serif">Kitchen Space</text>
+
+        <!-- Digital -->
+        <circle cx="620" cy="434" r="42" fill="#8B3A14" opacity=".7"/>
+        <text x="620" y="428" text-anchor="middle" fill="white" font-size="10.5" font-weight="bold" font-family="sans-serif">Digital</text>
+        <text x="620" y="443" text-anchor="middle" fill="rgba(255,255,255,.75)" font-size="8.5" font-family="sans-serif">Web / Email</text>
+
+        <!-- Partner Orgs -->
+        <circle cx="440" cy="80" r="38" fill="#E8A020"/>
+        <text x="440" y="75" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Partner</text>
+        <text x="440" y="88" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Orgs</text>
+
+        <!-- Social Media -->
+        <circle cx="440" cy="462" r="38" fill="#E8A020"/>
+        <text x="440" y="457" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Social</text>
+        <text x="440" y="470" text-anchor="middle" fill="white" font-size="10" font-weight="bold" font-family="sans-serif">Media</text>
+
+        <!-- Edge labels -->
+        <text x="302" y="191" fill="#8B3A14" font-size="8" transform="rotate(-22,302,191)" font-family="sans-serif">In person</text>
+        <text x="556" y="191" fill="#8B3A14" font-size="8" transform="rotate(22,556,191)" font-family="sans-serif">Skills</text>
+        <text x="240" y="293" fill="#8B3A14" font-size="8" transform="rotate(-8,240,293)" font-family="sans-serif">Operations</text>
+        <text x="592" y="293" fill="#8B3A14" font-size="8" transform="rotate(8,592,293)" font-family="sans-serif">Grants</text>
+        <text x="440" y="154" text-anchor="middle" fill="#8B3A14" font-size="8" font-family="sans-serif">Referrals</text>
+        <text x="440" y="382" text-anchor="middle" fill="#8B3A14" font-size="8" font-family="sans-serif">Marketing</text>
+
+        <!-- Legend -->
+        <rect x="22" y="490" width="10" height="3" fill="#C4521E" rx="1"/>
+        <text x="36" y="495" fill="#5A3A20" font-size="9" font-family="sans-serif">People</text>
+        <rect x="100" y="490" width="10" height="3" fill="#5A3A20" rx="1"/>
+        <text x="114" y="495" fill="#5A3A20" font-size="9" font-family="sans-serif">Infrastructure</text>
+        <rect x="210" y="490" width="10" height="3" fill="#E8A020" rx="1"/>
+        <text x="224" y="495" fill="#5A3A20" font-size="9" font-family="sans-serif">External partners</text>
+      </svg>
+    </div>
+    <div class="eco-legend">
+      <div class="eco-leg-item" style="border-left-color:#C4521E;">
+        <strong>People &amp; Community</strong>
+        <p>Participants, cooking leaders, staff, and volunteers who drive and receive the service</p>
+      </div>
+      <div class="eco-leg-item" style="border-left-color:#5A3A20;">
+        <strong>Infrastructure</strong>
+        <p>Venue with kitchen + flexible arts space, equipment, food safety systems, and operational staff</p>
+      </div>
+      <div class="eco-leg-item" style="border-left-color:#E8A020;">
+        <strong>Digital Channels</strong>
+        <p>Website, email system, social media, and member communication platform</p>
+      </div>
+      <div class="eco-leg-item" style="border-left-color:#8B3A14;">
+        <strong>Funding &amp; Partners</strong>
+        <p>Grants, 501(c)(3), sponsors, individual donors, and allied community organizations</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 BLUEPRINT -->
+<div id="blueprint">
+  <div class="section-wrap">
+    <div class="section-label">05 — Service Blueprint</div>
+    <h2 class="section-title">How the service works</h2>
+    <p class="section-desc">The blueprint maps the core user experience across six journey phases — from first discovery to ongoing community membership — revealing what happens in front of and behind the scenes.</p>
+    <div class="bp-scroll">
+      <table class="bp-table">
+        <thead>
+          <tr>
+            <th style="background:transparent;width:110px;"></th>
+            <th><div class="bp-phase">Discovery</div></th>
+            <th><div class="bp-phase">Sign-Up</div></th>
+            <th><div class="bp-phase">Cooking</div></th>
+            <th><div class="bp-phase">Eating</div></th>
+            <th><div class="bp-phase">Sharing</div></th>
+            <th><div class="bp-phase">After</div></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><div class="bp-row-label">Customer Goal</div></td>
+            <td class="bp-cell"><ul><li>Find community &amp; learn new things</li></ul></td>
+            <td class="bp-cell"><ul><li>Sign up for cooking class</li></ul></td>
+            <td class="bp-cell"><ul><li>Learn to cook &amp; meet new people</li></ul></td>
+            <td class="bp-cell"><ul><li>Get to know people better</li></ul></td>
+            <td class="bp-cell"><ul><li>Share talents &amp; create with friends</li></ul></td>
+            <td class="bp-cell"><ul><li>Stay in touch &amp; attend future events</li></ul></td>
+          </tr>
+          <tr class="bp-div"><td colspan="7"><div class="bp-div-line"></div></td></tr>
+          <tr>
+            <td><div class="bp-row-label">Customer Actions</div></td>
+            <td class="bp-cell"><ul><li>Hear about service from someone</li><li>See advertisement / flyer</li></ul></td>
+            <td class="bp-cell"><ul><li>Visit website</li><li>Complete sign-up &amp; profile</li><li>Receive email verification</li></ul></td>
+            <td class="bp-cell"><ul><li>Visit location</li><li>Check in with staff</li><li>Learn recipes &amp; techniques</li><li>Talk with peers</li></ul></td>
+            <td class="bp-cell"><ul><li>Feast at large community table</li><li>Hear about jam session</li></ul></td>
+            <td class="bp-cell"><ul><li>Observe activity</li><li>Join in when ready</li><li>Solidify relationships</li><li>Help clean-up</li></ul></td>
+            <td class="bp-cell"><ul><li>Connect on socials</li><li>Sign up for more events</li><li>Share contact info</li><li>Receive membership email</li></ul></td>
+          </tr>
+          <tr class="bp-div"><td colspan="7"><div class="bp-div-line"></div></td></tr>
+          <tr>
+            <td><div class="bp-row-label">Front Stage</div></td>
+            <td class="bp-cell"><ul><li>Create marketing content</li><li>Maintain website</li><li>Answer questions by phone/email</li></ul></td>
+            <td class="bp-cell"><ul><li>Answer prospect questions</li></ul></td>
+            <td class="bp-cell"><ul><li>Cooking expert leads course</li></ul></td>
+            <td class="bp-cell"><ul><li>Comfortable welcoming eating space</li></ul></td>
+            <td class="bp-cell"><ul><li>Staff facilitates transition to activity</li></ul></td>
+            <td class="bp-cell"><ul><li>Staff follow-up about experience &amp; membership</li></ul></td>
+          </tr>
+          <tr class="bp-div"><td colspan="7"><div class="bp-div-line"></div></td></tr>
+          <tr>
+            <td><div class="bp-row-label">Back Stage</div></td>
+            <td class="bp-cell"><ul><li>Find venue with kitchen + stage</li><li>Staff recruitment</li><li>Find sponsors &amp; grants</li></ul></td>
+            <td class="bp-cell"><ul><li>Website tracks open seats</li><li>Staff tracks RSVPs</li></ul></td>
+            <td class="bp-cell"><ul><li>Source &amp; organize supplies</li><li>Foster learning space</li><li>Procure cooking supplies</li></ul></td>
+            <td class="bp-cell"><ul><li>Set up art sharing space</li><li>Do dishes &amp; reset kitchen</li></ul></td>
+            <td class="bp-cell"><ul><li>Clean-up system</li><li>Procure sharing supplies</li></ul></td>
+            <td class="bp-cell"><ul><li>Website sends follow-up emails</li><li>Track membership pipeline</li></ul></td>
+          </tr>
+          <tr class="bp-div"><td colspan="7"><div class="bp-div-line"></div></td></tr>
+          <tr>
+            <td><div class="bp-row-label">Supporting Systems</div></td>
+            <td class="bp-cell"><ul><li>Google Ads, Social Media</li><li>Existing community</li><li>Community space</li></ul></td>
+            <td class="bp-cell"><ul><li>Website infrastructure</li><li>Grants &amp; donations</li><li>Volunteer community</li></ul></td>
+            <td class="bp-cell"><ul><li>Cooking resources</li><li>Reliable utilities</li><li>Food safety procedures</li><li>Dietary support</li></ul></td>
+            <td class="bp-cell"><ul><li>Welcoming eating space</li><li>Industrial dishwasher</li></ul></td>
+            <td class="bp-cell"><ul><li>Music equipment &amp; stage</li><li>Art supplies</li><li>Facilitation training</li></ul></td>
+            <td class="bp-cell"><ul><li>Messaging platform</li><li>501(c)(3) status</li><li>Bank systems</li></ul></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bp-channels"><strong>Channels:</strong> Email &nbsp;·&nbsp; Phone &nbsp;·&nbsp; Web &nbsp;·&nbsp; In Person &nbsp;·&nbsp; Physical Location</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 06 JOURNEY -->
+<div class="band" id="journey">
+  <div class="section-wrap">
+    <div class="section-label">06 — Customer Journey Map</div>
+    <h2 class="section-title">Alex's journey through Starting Point</h2>
+    <p class="section-desc">Alex is in their mid-twenties, just moved to Seattle, and is looking for community. They love cooking and music — but have never thought of themselves as a musician. This is their idealized, future-state journey through Starting Point.</p>
+    <div style="overflow-x:auto;">
+      <div class="jrn-phases">
+        <div class="jrn-phase-lbl">Discovery</div>
+        <div class="jrn-phase-lbl">Sign-Up</div>
+        <div class="jrn-phase-lbl">Cooking</div>
+        <div class="jrn-phase-lbl">Eating</div>
+        <div class="jrn-phase-lbl">Sharing</div>
+        <div class="jrn-phase-lbl">After</div>
+        <div class="jrn-phase-lbl">Continuing</div>
+        <div class="jrn-phase-lbl">Leadership</div>
+      </div>
+      <div class="jrn-chart">
+        <svg viewBox="0 0 900 210" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;">
+          <rect width="900" height="210" fill="#DDD7CB" rx="10"/>
+          <!-- Grid -->
+          <line x1="40" y1="35" x2="870" y2="35" stroke="#C8C2B6" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="105" x2="870" y2="105" stroke="#C8C2B6" stroke-width="1" stroke-dasharray="4,4"/>
+          <line x1="40" y1="175" x2="870" y2="175" stroke="#C8C2B6" stroke-width="1" stroke-dasharray="4,4"/>
+          <!-- Labels -->
+          <text x="32" y="38" text-anchor="end" fill="#8B3A14" font-size="8" font-weight="600" font-family="sans-serif">High</text>
+          <text x="32" y="108" text-anchor="end" fill="#8B3A14" font-size="8" font-weight="600" font-family="sans-serif">Med</text>
+          <text x="32" y="178" text-anchor="end" fill="#8B3A14" font-size="8" font-weight="600" font-family="sans-serif">Low</text>
+          <!-- Phase lines -->
+          <line x1="145" y1="18" x2="145" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="257" y1="18" x2="257" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="369" y1="18" x2="369" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="481" y1="18" x2="481" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="593" y1="18" x2="593" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="705" y1="18" x2="705" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <line x1="817" y1="18" x2="817" y2="192" stroke="#C4521E" stroke-width=".5" opacity=".3"/>
+          <!-- EXCITEMENT (gold) -->
+          <polyline points="90,108 145,90 201,122 257,95 313,75 369,62 425,55 481,70 537,48 593,42 649,38 705,38 761,36 817,35 870,35" stroke="#E8A020" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- BELONGING (rust) -->
+          <polyline points="90,185 145,178 201,170 257,162 313,152 369,140 425,118 481,95 537,75 593,60 649,48 705,42 761,38 817,36 870,36" stroke="#8B3A14" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- STRESS (sage) -->
+          <polyline points="90,162 145,135 201,118 257,148 313,135 369,122 425,140 481,128 537,105 593,132 649,130 705,118 761,125 817,118 870,110" stroke="#5C6B3A" stroke-width="2.5" fill="none" stroke-linejoin="round" stroke-linecap="round"/>
+          <!-- Dots - Excitement -->
+          <circle cx="90" cy="108" r="3.5" fill="#E8A020"/>
+          <circle cx="369" cy="62" r="3.5" fill="#E8A020"/>
+          <circle cx="537" cy="48" r="3.5" fill="#E8A020"/>
+          <circle cx="705" cy="38" r="3.5" fill="#E8A020"/>
+          <!-- Dots - Belonging -->
+          <circle cx="90" cy="185" r="3.5" fill="#8B3A14"/>
+          <circle cx="369" cy="140" r="3.5" fill="#8B3A14"/>
+          <circle cx="537" cy="75" r="3.5" fill="#8B3A14"/>
+          <circle cx="705" cy="42" r="3.5" fill="#8B3A14"/>
+          <!-- Dots - Stress -->
+          <circle cx="90" cy="162" r="3.5" fill="#5C6B3A"/>
+          <circle cx="257" cy="148" r="3.5" fill="#5C6B3A"/>
+          <circle cx="537" cy="105" r="3.5" fill="#5C6B3A"/>
+          <!-- Legend -->
+          <rect x="640" y="186" width="12" height="3" fill="#E8A020" rx="1"/>
+          <text x="656" y="192" fill="#5A3A20" font-size="8.5" font-family="sans-serif" font-weight="600">Excitement</text>
+          <rect x="726" y="186" width="12" height="3" fill="#8B3A14" rx="1"/>
+          <text x="742" y="192" fill="#5A3A20" font-size="8.5" font-family="sans-serif" font-weight="600">Belonging</text>
+          <rect x="808" y="186" width="12" height="3" fill="#5C6B3A" rx="1"/>
+          <text x="824" y="192" fill="#5A3A20" font-size="8.5" font-family="sans-serif" font-weight="600">Stress</text>
+        </svg>
+      </div>
+      <div class="jrn-grid">
+        <div class="jrn-col">
+          <h5>Discovery</h5>
+          <ul><li>Hears about service</li><li>Sees flyer / social post</li></ul>
+          <div class="jrn-emo"><p>"Would like to learn and meet new people" — low stress, low belonging</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Sign-Up</h5>
+          <ul><li>Views open spot</li><li>Creates profile</li><li>Signs up for event</li></ul>
+          <div class="jrn-emo"><p>"Why do I have to fill this out?" — growing excitement, rising stress</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Cooking</h5>
+          <ul><li>Arrives at venue</li><li>Cooks with group</li><li>Learns from peers</li></ul>
+          <div class="jrn-emo"><p>"I feel like I'm settling into this" — rising excitement, decreasing stress</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Eating</h5>
+          <ul><li>Feasts at community table</li><li>Hears about jam session</li></ul>
+          <div class="jrn-emo"><p>"I want this to continue" — high belonging, rise in stress</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Sharing</h5>
+          <ul><li>Listens to music</li><li>Gets offered instrument</li><li>Learns music skill</li></ul>
+          <div class="jrn-emo"><p>"I am so proud of putting myself out there" — peak excitement &amp; belonging</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>After</h5>
+          <ul><li>Connects on socials</li><li>Signs up again</li><li>Gets membership email</li></ul>
+          <div class="jrn-emo"><p>"I am happy I attended" — low stress, high excitement / belonging</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Continuing</h5>
+          <ul><li>Regularly attends events</li><li>Donates time &amp; money</li></ul>
+          <div class="jrn-emo"><p>"I feel like I belong" — high belonging &amp; excitement, low stress</p></div>
+        </div>
+        <div class="jrn-col">
+          <h5>Leadership</h5>
+          <ul><li>Volunteers for events</li><li>Facilitates &amp; organizes</li><li>Leads an activity</li></ul>
+          <div class="jrn-emo"><p>"I want other people to have the great experience I had" — fulfillment</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 07 PROTOTYPE -->
+<div id="prototype">
+  <div class="section-wrap">
+    <div class="section-label">07 — Prototype</div>
+    <h2 class="section-title">From blueprint to reality</h2>
+    <p class="section-desc">Our high-fidelity prototype is a live website demonstrating the discovery and sign-up phases of the service blueprint — the moments where newcomers first encounter Starting Point and decide to join.</p>
+    <div class="proto-grid">
+      <div>
+        <p style="font-size:.93rem;color:var(--brown-light);line-height:1.75;margin-bottom:1.25rem;">The prototype focuses on the most critical conversion moments: a newcomer discovering Starting Point, reading about what to expect, and committing to their first event. Every design decision reinforces accessibility, warmth, and low-barrier entry.</p>
+        <div class="proto-features">
+          <div class="proto-feat">
+            <div class="proto-feat-ico">🏠</div>
+            <div class="proto-feat-text"><h5>Home — Cook. Connect. Begin.</h5><p>Immediately communicates the mission and makes the first action obvious: find a session that fits you.</p></div>
+          </div>
+          <div class="proto-feat">
+            <div class="proto-feat-ico">👨‍🍳</div>
+            <div class="proto-feat-text"><h5>Our Chefs</h5><p>Introduces community leaders who shape each event — building trust and cultural connection before arrival.</p></div>
+          </div>
+          <div class="proto-feat">
+            <div class="proto-feat-ico">🗓️</div>
+            <div class="proto-feat-text"><h5>Session Finder</h5><p>Filterable by category (cooking, art, music) so participants can self-select the experience that matches their comfort level.</p></div>
+          </div>
+          <div class="proto-feat">
+            <div class="proto-feat-ico">🤲</div>
+            <div class="proto-feat-text"><h5>Volunteer &amp; Donate</h5><p>Clear pathways for contributors and transparent donation impact: "$125 supports 10 meal seats, 5 creative kits, and 1 session moment."</p></div>
+          </div>
+        </div>
+        <a href="https://valentinafilizola.github.io/startingpoint/" target="_blank" class="proto-link">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3H3a1 1 0 00-1 1v9a1 1 0 001 1h9a1 1 0 001-1v-3M10 2h4m0 0v4m0-4L7 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          View Live Prototype
+        </a>
+      </div>
+      <div class="mockup-wrap">
+        <div class="mockup-bar">
+          <div class="mkdot"></div><div class="mkdot"></div><div class="mkdot"></div>
+          <span class="mockup-url">valentinafilizola.github.io/startingpoint/</span>
+        </div>
+        <div class="mockup-body">
+          <div class="mock-hero">
+            <h3>Cook. Connect. Begin.</h3>
+            <p>A shared kitchen where people cook together, eat together, and leave with more than a meal.</p>
+          </div>
+          <div class="mock-info">
+            <div class="mock-info-item"><span>When</span><strong>Spring 2026</strong></div>
+            <div class="mock-info-item"><span>Where</span><strong>Seattle area</strong></div>
+            <div class="mock-info-item"><span>Cost</span><strong>Free – Donate as you can</strong></div>
+          </div>
+          <div class="mock-tags">
+            <span class="mock-tag">All skill levels</span>
+            <span class="mock-tag">Dietary needs welcome</span>
+            <span class="mock-tag">Pay what you can</span>
+          </div>
+          <div style="margin-top:.85rem;background:#EAE5D9;border-radius:7px;padding:.65rem .85rem;font-size:.75rem;color:var(--brown-light);line-height:1.55;">
+            <strong style="color:var(--rust);">Session Types:</strong> Family Recipe Night · Kitchen Jam · Craft After Dinner
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Artifacts -->
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:3.5rem;margin-bottom:.5rem;font-size:1.25rem;">Design Artifacts</h3>
+    <p style="font-size:.88rem;color:var(--brown-light);margin-bottom:1.25rem;">Physical and digital artifacts created to support the full service experience.</p>
+    <div class="artifacts-grid">
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:#8B3A14;">
+          <span>🃏</span>
+          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Three-round card game</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Physical Artifact</div>
+          <h4>Transition Cards</h4>
+          <p>A three-round conversation card game played at the table — Warm Up, Go Deeper, and All In — designed to build psychological safety and deepen connection during the meal.</p>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:#C4521E;">
+          <span>🖼️</span>
+          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">7-card story sequence</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Communication Artifact</div>
+          <h4>Experience Cards</h4>
+          <p>A visual storyboard of the full participant journey — Discovery through Continuing — used in stakeholder presentations to communicate the service's emotional arc.</p>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:var(--cream-dark);">
+          <span>📋</span>
+          <span style="font-size:.7rem;color:var(--brown-light);">Event marketing</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Marketing Artifact</div>
+          <h4>Community Flyer</h4>
+          <p>A designed flyer communicating the service's value proposition, event logistics, and sign-up pathway — including QR code registration with dietary needs intake.</p>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:var(--cream-dark);">
+          <span>💧</span>
+          <span style="font-size:.7rem;color:var(--brown-light);">Pay it forward</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Physical Artifact</div>
+          <h4>Donation Poster</h4>
+          <p>"Pay it Forward" — displayed at events to communicate the value of sustaining, giving back, and expanding the community through donations.</p>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:#8B3A14;">
+          <span>🌐</span>
+          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Live digital prototype</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Digital Prototype</div>
+          <h4>Starting Point Website</h4>
+          <p>A live website covering discovery, chef introductions, session finder, volunteer sign-up, and donation — the digital face of the service for newcomers.</p>
+        </div>
+      </div>
+      <div class="artifact-card">
+        <div class="artifact-preview" style="background:#E8A020;">
+          <span>🗺️</span>
+          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Journey visualization</span>
+        </div>
+        <div class="artifact-info">
+          <div class="artifact-type">Research Artifact</div>
+          <h4>Service Blueprint &amp; Journey Map</h4>
+          <p>Full-fidelity service blueprint and 8-phase customer journey map documenting the complete participant experience with emotional arcs and system-level actions.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- 08 NARRATIVE -->
+<div class="band" id="narrative">
+  <div class="section-wrap">
+    <div class="section-label">08 — Narrative Workshop</div>
+    <h2 class="section-title">How our design questions evolved</h2>
+    <p class="section-desc">Our narrative workshop traced the evolution of our central design question — from a broad prompt about skill-sharing to a focused challenge about psychological safety, reciprocity, and belonging.</p>
+    <div style="background:white;border-radius:14px;padding:1.75rem;margin-bottom:1.75rem;border-left:4px solid var(--gold);">
+      <div style="font-size:.68rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.5rem;">Initial Design Question</div>
+      <p style="font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--rust);line-height:1.55;">What is the best format to get people to build new skills, share their expertise, and build community while doing it?</p>
+    </div>
+    <div class="q-grid">
+      <div class="q-block"><div class="hmw">HMW</div><p>Design a peer-to-peer skill sharing product/service that enables the transition from learner to contributor and fosters community?</p></div>
+      <div class="q-block"><div class="hmw">HMW</div><p>Design a peer-to-peer skill sharing service that builds empathy for learners while also enabling the transition from learners to contributors?</p></div>
+      <div class="q-block"><div class="hmw">HMW</div><p>Enable psychological safety when learning and sharing with new people?</p></div>
+      <div class="q-block"><div class="hmw">HMW</div><p>Draw out the knowledge of diverse backgrounds so that learning is a reciprocal activity?</p></div>
+      <div class="q-block"><div class="hmw">HMW</div><p>Support in-person connection for learners or teachers — and enable connections that persist beyond the context of the service?</p></div>
+      <div class="q-block"><div class="hmw">HMW</div><p>Ensure that learning is a reciprocal activity where every participant is both teacher and student?</p></div>
+    </div>
+    <div style="background:white;border-radius:14px;padding:1.75rem;margin-top:1.75rem;">
+      <div style="font-size:.68rem;font-weight:700;color:var(--orange);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;">Where These Questions Led Us</div>
+      <p style="font-size:.93rem;color:var(--brown-light);line-height:1.78;">Our workshop revealed that the best format for peer skill-sharing is one that is <strong>informal and decentralized</strong>, allowing people to learn in places that work for them. It must enable people to learn skills from their peers, become teachers themselves, and build lasting community — with cooking serving as the universal, low-barrier entry point that brings everyone to the same table.</p>
+    </div>
+  </div>
+</div>
+
+<!-- 09 PRINCIPLES -->
+<div id="principles">
+  <div class="section-wrap">
+    <div class="section-label">09 — Design Principles &amp; Requirements</div>
+    <h2 class="section-title">What must guide our design</h2>
+    <p class="section-desc">Six design requirements derived from research, co-design, and field observation — each grounded in evidence and tied to a core principle that will maintain design integrity as the service evolves.</p>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);font-size:1.15rem;margin-bottom:1.25rem;">Design Requirements</h3>
+    <div class="req-grid">
+      <div class="req-card">
+        <div class="req-num">1</div>
+        <h4>Build Shared Routines That Bring People Back</h4>
+        <blockquote>"They always know to start with scales, so much so that I don't even have to tell them, and they'll sit down and they'll start."</blockquote>
+        <p>Recurring, predictable rituals reduce anxiety for newcomers and build ownership for returning members. The service must establish consistent event structures that participants internalize over time.</p>
+        <div class="req-src">Interview with Music Teacher</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">2</div>
+        <h4>Foster Community &amp; Belonging</h4>
+        <blockquote>"Space fulfills the need of… Yeah, like, belonging and, like, not being alone, and having a place to create."</blockquote>
+        <p>Community-building is not a byproduct of Starting Point — it is the primary output. Every design decision must ask: does this help people feel they belong here?</p>
+        <div class="req-src">Interview with Pottery Volunteer (P1)</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">3</div>
+        <h4>Support Skilled Volunteers</h4>
+        <blockquote>"They need to know a lot to be a woodshop volunteer. It's not like anybody can do it… it's kind of a big commitment."</blockquote>
+        <p>Expert contributors require onboarding, trust-building, and ongoing support. The service must create a clear pathway from participant to skilled, confident volunteer.</p>
+        <div class="req-src">Interview with Manager of Makerspaces (P2)</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">4</div>
+        <h4>Balance Instruction With Open Practice</h4>
+        <blockquote>"Students frequently interact with each other by sharing feedback, observing others' reviews, and building off shared critiques."</blockquote>
+        <p>Learning deepens through peer interaction, not just expert instruction. Event formats must create structured open time for participants to observe, share, and build off each other.</p>
+        <div class="req-src">HCDE Portfolio Review — Field Observation</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">5</div>
+        <h4>Limit Barriers of Entry</h4>
+        <blockquote>"Even this, like, having free drop-in programs, like, that is mutual aid… and that is, like, a really big core of who we are."</blockquote>
+        <p>Pay-what-you-can pricing, dietary accommodation, multi-language support, and welcoming framing are structural requirements that define Starting Point's identity — not optional extras.</p>
+        <div class="req-src">Interview with Pottery Volunteer</div>
+      </div>
+      <div class="req-card">
+        <div class="req-num">6</div>
+        <h4>Enable the Transition from Learner to Contributor</h4>
+        <blockquote>"There is a clear mix of nervousness and excitement, as students want to make a strong impression while also being eager to learn."</blockquote>
+        <p>The most powerful moment in a participant's journey is when they first teach something to someone else. The service must deliberately create these moments and honor them.</p>
+        <div class="req-src">HCDE Portfolio Review — Field Observation</div>
+      </div>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);font-size:1.15rem;margin-top:3rem;margin-bottom:1.25rem;">Design Principles</h3>
+    <div class="prin-grid">
+      <div class="prin-card">
+        <div class="prin-num">P1</div>
+        <h4>The Table Is the Interface</h4>
+        <p>Every physical and digital touchpoint should feel as warm, unhurried, and human as a shared meal. We design for the experience of sitting down together — not for efficiency or throughput. If an interaction would feel cold at a dinner table, it has no place in Starting Point.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">P2</div>
+        <h4>Make Watching Easy, Asking Optional</h4>
+        <p>Since people default to observation before participation, the space and the service must make it effortless to see what others are doing. Explicit asking should be one of many pathways, not the only one — and never required.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">P3</div>
+        <h4>Confidence Over Perfection</h4>
+        <p>The goal of every cooking session, music moment, and creative gathering is to send participants home feeling capable — not necessarily skilled. Progress must be visibly celebrated over polish, and the structure of every event should reinforce this.</p>
+      </div>
+      <div class="prin-card">
+        <div class="prin-num">P4</div>
+        <h4>Design for the Transition, Not Just the Event</h4>
+        <p>Each event is one step in a longer journey. The service must actively design the pathway from first-timer → regular → volunteer → leader — not leave that evolution to chance. Every touchpoint should have a "what's next" built in.</p>
+      </div>
+    </div>
+
+    <div class="agent-card">
+      <h4>Agent Deployment Principle: Augment Human Connection, Never Replace It</h4>
+      <p>Starting Point may use AI-assisted tools — recommendation engines, form processing, personalized follow-up emails — to reduce administrative burden and improve participant matching. However, the following limitations must govern any agent deployment:</p>
+      <ul>
+        <li><strong>AI cannot assess cultural fit or community dynamics.</strong> Automated matching tools lack the contextual awareness to understand interpersonal dynamics or community history. Final decisions about volunteer roles and facilitation assignments must remain human-mediated.</li>
+        <li><strong>Language model outputs require human review before community-facing use.</strong> AI-generated event descriptions or welcome communications may contain inaccuracies or tones inconsistent with Starting Point's voice. All AI-drafted content must be reviewed by a community member before publication.</li>
+        <li><strong>Automated follow-up must preserve opt-out dignity.</strong> Reminder emails and membership solicitation workflows must include clear, friction-free opt-out options. Persistence algorithms that optimize for conversion can undermine the psychological safety that Starting Point depends on.</li>
+        <li><strong>AI cannot build trust.</strong> The relationship between Starting Point and its community is built through consistent human presence. Agent tools are permitted only in administrative — not relational — pathways of the service. A chatbot cannot welcome someone to their first event; a person must.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div style="display:flex;align-items:center;justify-content:center;gap:.65rem;margin-bottom:.85rem;">
+    <svg width="30" height="30" viewBox="0 0 40 40"><ellipse cx="20" cy="20" rx="20" ry="20" fill="#E8A020"/><text x="50%" y="57%" text-anchor="middle" dominant-baseline="middle" fill="white" font-size="13" font-weight="bold" font-family="Georgia,serif">SP</text></svg>
+    <strong style="font-family:'Playfair Display',serif;font-size:1rem;color:white;">Starting Point</strong>
+  </div>
+  <p>Design Portfolio — HCDE Spring 2026 Capstone</p>
+  <p style="margin-top:.4rem;">Live prototype: <a href="https://valentinafilizola.github.io/startingpoint/" target="_blank">valentinafilizola.github.io/startingpoint/</a></p>
+  <p style="margin-top:.4rem;font-size:.72rem;opacity:.4;">Cook. Connect. Community. &nbsp;·&nbsp; Seattle, WA &nbsp;·&nbsp; Spring 2026</p>
+</footer>
+
+</body>
+</html>
