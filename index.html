@@ -149,13 +149,26 @@
     .mock-tag{background:var(--rust);color:white;padding:.25rem .65rem;border-radius:100px;font-size:.68rem;font-weight:500;}
 
     /* ARTIFACTS */
-    .artifacts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:2.5rem;}
-    .artifact-card{background:white;border-radius:14px;overflow:hidden;border:1px solid var(--cream-darker);}
-    .artifact-preview{height:140px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:.4rem;font-size:2.5rem;}
-    .artifact-type{font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--orange);margin-bottom:.35rem;}
-    .artifact-info{padding:1.1rem;}
-    .artifact-info h4{font-family:'Playfair Display',serif;font-size:.95rem;color:var(--rust);margin-bottom:.35rem;}
-    .artifact-info p{font-size:.8rem;color:var(--brown-light);line-height:1.55;}
+    .artifacts-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-top:2.5rem;margin-bottom:1.35rem;}
+    .artifacts-header-left h3{font-family:'Playfair Display',serif;color:var(--rust);font-size:1.25rem;margin:0 0 .35rem 0;}
+    .artifacts-header-left p{margin:0;color:var(--brown-light);font-size:.9rem;max-width:40rem;}
+    .figma-link{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;background:var(--brown);color:#fff;padding:.7rem 1.1rem;border-radius:999px;font-size:.8rem;font-weight:700;letter-spacing:.01em;white-space:nowrap;flex-shrink:0;box-shadow:0 8px 20px rgba(44,26,14,.12);transition:transform .18s ease,box-shadow .18s ease,background .18s ease;}
+    .figma-link:hover{background:var(--rust);transform:translateY(-1px);box-shadow:0 10px 22px rgba(44,26,14,.16);}
+    .artifacts-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1.1rem;margin-top:1rem;}
+    .artifact-card{background:#fff;border:1px solid rgba(44,26,14,.08);border-radius:18px;overflow:hidden;box-shadow:0 10px 24px rgba(44,26,14,.06);display:flex;flex-direction:column;transition:transform .18s ease,box-shadow .18s ease;}
+    .artifact-card:hover{transform:translateY(-2px);box-shadow:0 14px 32px rgba(44,26,14,.10);}
+    .artifact-img-wrap{position:relative;aspect-ratio:4/3;background:var(--cream-dark);overflow:hidden;}
+    .artifact-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;}
+    .research-img-grid{display:grid;grid-template-columns:repeat(3,1fr);width:100%;height:100%;}
+    .research-img-grid img{width:100%;height:100%;object-fit:cover;display:block;}
+    .artifact-badge{position:absolute;top:.8rem;left:.8rem;background:rgba(255,255,255,.88);backdrop-filter:blur(8px);color:var(--rust);border:1px solid rgba(44,26,14,.10);font-size:.63rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;padding:.35rem .65rem;border-radius:999px;}
+    .artifact-info{padding:1rem 1.1rem 1.15rem;display:flex;flex-direction:column;gap:.4rem;}
+    .artifact-info h4{font-family:'Playfair Display',serif;color:var(--rust);font-size:1rem;margin:0;}
+    .artifact-info p{font-size:.84rem;color:var(--brown-light);line-height:1.6;margin:0;}
+    .artifact-info a{color:var(--rust);font-weight:600;text-decoration:none;}
+    .artifact-info a:hover{text-decoration:underline;}
+    @media(max-width:900px){.artifacts-grid{grid-template-columns:1fr;}}
+    @media(max-width:640px){.figma-link{width:100%;justify-content:center;}}
 
     /* NARRATIVE */
     .q-grid{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
@@ -796,78 +809,96 @@
     </div>
 
     <!-- Artifacts -->
-    <h3 style="font-family:'Playfair Display',serif;color:var(--rust);margin-top:3.5rem;margin-bottom:.5rem;font-size:1.25rem;">Design Artifacts</h3>
-    <p style="font-size:.88rem;color:var(--brown-light);margin-bottom:1.25rem;">Physical and digital artifacts created to support the full service experience.</p>
-    <div class="artifacts-grid">
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:#8B3A14;">
-          <span>🃏</span>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Three-round card game</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Physical Artifact</div>
-          <h4>Transition Cards</h4>
-          <p>A three-round conversation card game played at the table — Warm Up, Go Deeper, and All In — designed to build psychological safety and deepen connection during the meal.</p>
-        </div>
+    <div class="artifacts-header">
+      <div class="artifacts-header-left">
+        <h3>Design Artifacts</h3>
+        <p>Physical and digital artifacts created to support the full service experience.</p>
       </div>
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:#C4521E;">
-          <span>🖼️</span>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">7-card story sequence</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Communication Artifact</div>
-          <h4>Experience Cards</h4>
-          <p>A visual storyboard of the full participant journey — Discovery through Continuing — used in stakeholder presentations to communicate the service's emotional arc.</p>
-        </div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:var(--cream-dark);">
-          <span>📋</span>
-          <span style="font-size:.7rem;color:var(--brown-light);">Event marketing</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Marketing Artifact</div>
-          <h4>Community Flyer</h4>
-          <p>A designed flyer communicating the service's value proposition, event logistics, and sign-up pathway — including QR code registration with dietary needs intake.</p>
-        </div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:var(--cream-dark);">
-          <span>💧</span>
-          <span style="font-size:.7rem;color:var(--brown-light);">Pay it forward</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Physical Artifact</div>
-          <h4>Donation Poster</h4>
-          <p>"Pay it Forward" — displayed at events to communicate the value of sustaining, giving back, and expanding the community through donations.</p>
-        </div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:#8B3A14;">
-          <span>🌐</span>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Live digital prototype</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Digital Prototype</div>
-          <h4>Starting Point Website</h4>
-          <p>A live website covering discovery, chef introductions, session finder, volunteer sign-up, and donation — the digital face of the service for newcomers.</p>
-        </div>
-      </div>
-      <div class="artifact-card">
-        <div class="artifact-preview" style="background:#E8A020;">
-          <span>🗺️</span>
-          <span style="font-size:.7rem;color:rgba(255,255,255,.7);">Journey visualization</span>
-        </div>
-        <div class="artifact-info">
-          <div class="artifact-type">Research Artifact</div>
-          <h4>Service Blueprint &amp; Journey Map</h4>
-          <p>Full-fidelity service blueprint and 8-phase customer journey map documenting the complete participant experience with emotional arcs and system-level actions.</p>
-        </div>
-      </div>
+      <a class="figma-link" href="https://www.figma.com/design/rBe6rzHAneqCqgcFJl1TGg/Starting-point-designs?node-id=553-482" target="_blank" rel="noopener noreferrer" aria-label="View all deliverables in Figma">
+        <svg width="16" height="16" viewBox="0 0 38 57" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M19 28.5C19 25.96 20.0009 23.5241 21.7825 21.7425C23.5641 19.9609 26 18.96 28.5 18.96C31 18.96 33.4359 19.9609 35.2175 21.7425C36.9991 23.5241 38 25.96 38 28.5C38 31.04 36.9991 33.4759 35.2175 35.2575C33.4359 37.0391 31 38.04 28.5 38.04C26 38.04 23.5641 37.0391 21.7825 35.2575C20.0009 33.4759 19 31.04 19 28.5Z" fill="#1ABCFE"/>
+          <path d="M0 47.04C0 44.5 1.00089 42.0641 2.78249 40.2825C4.56408 38.5009 7 37.5 9.5 37.5H19V47.04C19 49.58 17.9991 52.0159 16.2175 53.7975C14.4359 55.5791 12 56.58 9.5 56.58C7 56.58 4.56408 55.5791 2.78249 53.7975C1.00089 52.0159 0 49.58 0 47.04Z" fill="#0ACF83"/>
+          <path d="M19 0V18.96H28.5C31 18.96 33.4359 17.9591 35.2175 16.1775C36.9991 14.3959 38 11.96 38 9.46C38 6.95999 36.9991 4.52408 35.2175 2.74249C33.4359 0.960891 31 -0.04 28.5 -0.04L19 0Z" fill="#FF7262"/>
+          <path d="M0 9.46C0 11.96 1.00089 14.3959 2.78249 16.1775C4.56408 17.9591 7 18.96 9.5 18.96H19V0H9.5C7 0 4.56408 1.00089 2.78249 2.78249C1.00089 4.56408 0 7 0 9.5V9.46Z" fill="#F24E1E"/>
+          <path d="M0 28.5C0 31.04 1.00089 33.4759 2.78249 35.2575C4.56408 37.0391 7 38.04 9.5 38.04H19V18.96H9.5C7 18.96 4.56408 19.9609 2.78249 21.7425C1.00089 23.5241 0 25.96 0 28.5Z" fill="#A259FF"/>
+        </svg>
+        View All Deliverables in Figma
+      </a>
     </div>
-  </div>
-</div>
+
+    <div class="artifacts-grid">
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <img src="transition-cards.png" alt="Transition Cards">
+          <span class="artifact-badge">Physical Artifact</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Transition Cards</h4>
+          <p>A fun game with 3 levels of depth to develop personal conversations with the people around the meal table to enable a smooth transition from eating to sharing a skill or being creative.</p>
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <img src="experience-cards.png" alt="Experience Cards">
+          <span class="artifact-badge">Communication Artifact</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Experience Cards</h4>
+          <p>A visual representation to show the potential journey of a participant discovering to continuing our service communicating the emotional arc.</p>
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <img src="community-flyer.png" alt="Community Flyer">
+          <span class="artifact-badge">Marketing Artifact</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Community Flyer</h4>
+          <p>A designed flyer communicating the service's value proposition, event logistics, and sign-up pathway which includes a QR code to registration and dietary needs intake.</p>
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <img src="donation-poster.png" alt="Donation Poster">
+          <span class="artifact-badge">Physical Artifact</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Donation Poster</h4>
+          <p>Displayed at the end of events to communicate the value of one of the ways our service sustains itself by allowing the community the chance to give back and provide support for other people.</p>
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <img src="website-screenshot.png" alt="Starting Point Website">
+          <span class="artifact-badge">Digital Prototype</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Starting Point Website</h4>
+          <p>A live website covering discovery, chef introductions, session finder, volunteer sign-up, and donations. The digital face of the service for newcomers. <a href="https://valentinafilizola.github.io/startingpoint/" target="_blank" rel="noopener noreferrer">Visit the live site →</a></p>
+        </div>
+      </div>
+
+      <div class="artifact-card">
+        <div class="artifact-img-wrap">
+          <div class="research-img-grid">
+            <img src="service-blueprint.png" alt="Service Blueprint">
+            <img src="journey-map.png" alt="Journey Map">
+            <img src="ecosystem-map.png" alt="Ecosystem Map">
+          </div>
+          <span class="artifact-badge">Research Artifact</span>
+        </div>
+        <div class="artifact-info">
+          <h4>Service Blueprint, Journey Map &amp; Ecosystem Map</h4>
+          <p>Full-fidelity service blueprint, 8-phase customer journey map, and the ecosystem progression documenting the complete participant experience with emotional arcs and system-level actions.</p>
+        </div>
+      </div>
+
+    </div>
 
 <div class="divider"></div>
 
